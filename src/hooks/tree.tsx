@@ -13,7 +13,6 @@ interface TreeNode {
 
 interface TreeContextData {
     tree: TreeNode[];
-    saveTree(tree: TreeNode[]): void
     toogleShowChildren(id: string): void;
     toogleChecked(id: string): void;
 }
@@ -46,17 +45,6 @@ export const TreeProvider: React.FC = ({ children }) => {
         }
     }, [parseTreeData]);
 
-    const saveTree = useCallback(
-        tree => {
-            setTree(tree);
-            localStorage.setItem(
-                '@HiPlatform:tree',
-                JSON.stringify(tree),
-            );
-        },
-        [],
-    );
-
     const updateShowChildren = useCallback((data: TreeNode[], id: string) => {
         let arrayData = [];
         for (let node of data) {
@@ -72,6 +60,10 @@ export const TreeProvider: React.FC = ({ children }) => {
     const toogleShowChildren = useCallback((id: string) => {
         const updatedTree = updateShowChildren(tree, id);
         setTree(updatedTree);
+        localStorage.setItem(
+            '@HiPlatform:tree',
+            JSON.stringify(updatedTree),
+        );
     }, [tree, updateShowChildren]);
 
 
@@ -98,10 +90,14 @@ export const TreeProvider: React.FC = ({ children }) => {
         const treeAux = [...tree];
         const updatedTree = toogleCheckedNode(treeAux, id);
         setTree(updatedTree);
+        localStorage.setItem(
+            '@HiPlatform:tree',
+            JSON.stringify(updatedTree),
+        );
     }, [toogleCheckedNode, tree]);
 
     return (
-        <TreeContext.Provider value={{ tree, saveTree, toogleShowChildren, toogleChecked }}>
+        <TreeContext.Provider value={{ tree, toogleShowChildren, toogleChecked }}>
             {children}
         </TreeContext.Provider>
     );
