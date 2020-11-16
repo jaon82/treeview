@@ -1,24 +1,14 @@
 import React from 'react';
 import './App.css';
+import { useTree } from './hooks/tree';
 
 import TreeView from './components/TreeView'
 
-import data from './data.json';
-
-function parseTreeData(data: any) {
-  let arrayData: any = [];
-  for (let k of Object.keys(data)) {
-    arrayData[k] = data[k];
-    arrayData[k].children = parseTreeData(arrayData[k].children);
-  }
-  return arrayData;
-}
-
-const treeData = parseTreeData(data);
-
 function App() {
+  const { tree } = useTree();
+
   return (
-    <TreeView tree={treeData} />
+    <TreeView tree={tree} />
   );
 }
 
