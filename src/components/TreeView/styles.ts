@@ -24,7 +24,7 @@ export const Item = styled.li<ItemProps>`
         }
         
         ${props => props.level > 0 && css`
-            padding-left: ${props.level * 16}px;
+            padding-left: ${16 + props.level * 16}px;
         `}
 
         h4{
