@@ -6,7 +6,8 @@ import { Container, Item } from './styles';
 interface TreeNode {
     id: string;
     name: string;
-    children: TreeNode[]
+    children: TreeNode[],
+    level: number
 }
 
 interface TreeProps {
@@ -18,7 +19,7 @@ const TreeView: React.FC<TreeProps> = ({ tree }) => {
         <Container>
             {
                 tree.map((node) => (
-                    <Item key={node.id}>
+                    <Item key={node.id} level={node.level}>
                         <div>
                             <input type="checkbox" />
                             <h4>{node.name}</h4>
