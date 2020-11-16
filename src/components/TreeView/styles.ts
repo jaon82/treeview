@@ -27,10 +27,17 @@ export const Item = styled.li<ItemProps>`
             padding-left: ${16 + props.level * 16}px;
         `}
 
+        input{
+            width: 20px;
+            height: 20px;
+            cursor: pointer;
+        }
+
         h4{
             flex: 1;
-            margin-left: 8px;
             user-select: none;
+            margin: 5px 0 5px 16px;
+            padding: 20px 0;
         }
     }
 `;

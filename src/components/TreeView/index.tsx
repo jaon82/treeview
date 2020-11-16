@@ -35,12 +35,12 @@ const TreeView: React.FC<TreeProps> = ({ tree }) => {
                     <Item key={node.id} level={node.level}>
                         <div>
                             <input type="checkbox" onChange={() => checkNode(node.id)} checked={node.checked} />
-                            <h4>{node.name}</h4>
+                            <h4 onClick={() => checkNode(node.id)}>{node.name}</h4>
                             {node.children.length > 0 &&
                                 (
                                     node.showChildren ?
-                                        <FiChevronUp size={20} onClick={() => handleToogleShowChildren(node.id)} />
-                                        : <FiChevronDown size={20} onClick={() => handleToogleShowChildren(node.id)} />
+                                        <FiChevronUp size={30} onClick={() => handleToogleShowChildren(node.id)} color="#007bff" />
+                                        : <FiChevronDown size={30} onClick={() => handleToogleShowChildren(node.id)} />
                                 )
                             }
                         </div>
